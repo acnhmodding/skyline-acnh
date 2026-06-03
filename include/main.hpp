@@ -20,7 +20,6 @@
 #include "skyline/inlinehook/And64InlineHook.hpp"
 #include "skyline/logger/TcpLogger.hpp"
 #include "skyline/plugin/PluginManager.hpp"
-#include "skyline/utils/SafeQueue.hpp"
 #include "types.h"
 
 #ifdef __cplusplus

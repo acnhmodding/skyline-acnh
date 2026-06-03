@@ -35,4 +35,4 @@ send: all
 
 clean:
 	$(MAKE) clean -f $(MAKE_NSO)
-	@rm $(CODE_NAME).npdm
+	@rm -f $(CODE_NAME).npdm
