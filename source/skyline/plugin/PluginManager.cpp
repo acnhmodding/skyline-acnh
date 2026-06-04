@@ -1,6 +1,7 @@
 #include "skyline/plugin/PluginManager.hpp"
 
 #include <set>
+#include <vector>
 
 #include "nn/crypto.h"
 #include "skyline/logger/TcpLogger.hpp"
@@ -182,28 +183,37 @@ namespace plugin {
 
         // execute plugin entrypoints
 
-        pluginInfoIter = m_pluginInfos.begin();
-        while (pluginInfoIter != m_pluginInfos.end()) {
-            auto& plugin = *pluginInfoIter;
+        auto runEntrypoint = [](PluginInfo& plugin) {
+            skyline::logger::s_Instance->LogFormat("[PluginManager] Running `main` for %s", plugin.Path.c_str());
 
-            skyline::logger::s_Instance->LogFormat("[PluginManager] Running `main` for %s", plugin.Path.c_str(),
-                                                   &plugin.Module.Name);
-
-            // try to find entrypoint
             void (*pluginEntrypoint)() = NULL;
-            rc = nn::ro::LookupModuleSymbol(reinterpret_cast<uintptr_t*>(&pluginEntrypoint), &plugin.Module, "main");
+            Result lrc =
+                nn::ro::LookupModuleSymbol(reinterpret_cast<uintptr_t*>(&pluginEntrypoint), &plugin.Module, "main");
 
-            if (pluginEntrypoint != NULL && R_SUCCEEDED(rc)) {
+            if (pluginEntrypoint != NULL && R_SUCCEEDED(lrc)) {
                 pluginEntrypoint();
-                skyline::logger::s_Instance->LogFormat("[PluginManager] Finished running `main` for '%s' (0x%x)",
-                                                       plugin.Path.c_str(), rc);
+                skyline::logger::s_Instance->LogFormat("[PluginManager] Finished running `main` for '%s'",
+                                                       plugin.Path.c_str());
             } else {
                 skyline::logger::s_Instance->LogFormat("[PluginManager] Failed to lookup symbol for '%s' (0x%x)",
-                                                       plugin.Path.c_str(), rc);
+                                                       plugin.Path.c_str(), lrc);
             }
+        };
 
-            pluginInfoIter++;
-        }
+        auto isFramework = [](PluginInfo& plugin) {
+            uintptr_t marker = 0;
+            Result mrc = nn::ro::LookupModuleSymbol(&marker, &plugin.Module, "__sl_framework");
+            return R_SUCCEEDED(mrc);
+        };
+
+        std::vector<PluginInfo*> frameworks, others;
+        for (auto& plugin : m_pluginInfos)
+            (isFramework(plugin) ? frameworks : others).push_back(&plugin);
+
+        for (auto* plugin : frameworks)
+            runEntrypoint(*plugin);
+        for (auto* plugin : others)
+            runEntrypoint(*plugin);
     }
 
     const PluginInfo* Manager::GetContainingPluginImpl(const void* addr) {
