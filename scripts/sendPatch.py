@@ -32,8 +32,8 @@ if '.' not in consoleIP:
 
 consolePort = 5000
 
-tid        = sys.argv[2] if len(sys.argv) > 2 else '010051F0207B2000'
-codeName   = sys.argv[3] if len(sys.argv) > 3 else 'living_the_dream'
+tid        = sys.argv[2] if len(sys.argv) > 2 else '01006F8002326000'
+codeName   = sys.argv[3] if len(sys.argv) > 3 else 'acnh'
 subsdkName = sys.argv[4] if len(sys.argv) > 4 else 'subsdk9'
 
 curDir = os.curdir

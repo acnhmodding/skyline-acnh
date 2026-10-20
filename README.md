@@ -1,12 +1,12 @@
 # Skyline-LTD
 
-A fork of [Skyline](https://github.com/skyline-dev/skyline), an environment for linking, runtime hooking and code patching. Adapted to run on **Tomodachi Life: Living the Dream** (title ID `010051F0207B2000`).
+A fork of [Skyline](https://github.com/skyline-dev/skyline), an environment for linking, runtime hooking and code patching. Adapted to run on **Tomodachi Life: Living the Dream** (title ID `01006F8002326000`).
 
 # Usage
 
 1. Head to the Release page.
 2. Download the latest release (`skyline.zip`).
-3. Copy the `exefs` directory onto your SD card at: `atmosphere/contents/010051F0207B2000/`.
+3. Copy the `exefs` directory onto your SD card at: `atmosphere/contents/01006F8002326000/`.
 
 # Compatibility
 

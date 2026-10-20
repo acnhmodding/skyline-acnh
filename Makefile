@@ -11,8 +11,8 @@ endif
 
 NAME 			:= $(shell basename $(CURDIR))
 NAME_LOWER		:= $(shell echo $(NAME) | tr A-Z a-z)
-TID				:= 010051F0207B2000
-CODE_NAME		:= living_the_dream
+TID				:= 01006F8002326000
+CODE_NAME		:= acnh
 SUBSDK_NAME		:= subsdk9
 
 SCRIPTS_DIR		:= scripts
