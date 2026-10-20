@@ -1,6 +1,6 @@
 # Skyline-LTD
 
-A fork of [Skyline](https://github.com/skyline-dev/skyline), an environment for linking, runtime hooking and code patching. Adapted to run on **Tomodachi Life: Living the Dream** (title ID `01006F8002326000`).
+A fork of [Skyline](https://github.com/skyline-dev/skyline), an environment for linking, runtime hooking and code patching. Adapted to run on **Animal Crossing: New Horizons** (title ID `01006F8002326000`).
 
 # Usage
 
@@ -10,10 +10,10 @@ A fork of [Skyline](https://github.com/skyline-dev/skyline), an environment for 
 
 # Compatibility
 
-This fork only targets Tomodachi Life: Living the Dream. For other games, see mainline Skyline and its derivatives:
+This fork only targets Animal Crossing: New Horizons. For other games, see mainline Skyline and its derivatives:
 
 - [Skyline](https://github.com/skyline-dev/skyline)
-- [Animal Crossing New Horizon](https://github.com/3096/skyline)
+- [Tomodachi Life: Living the Dream](https://github.com/tlmodding/skyline-ltd)
 - [Pokémon Sword/Shield](https://github.com/3096/skyline/tree/sword)
 - [Xenoblade Chronicles Definitive Edition](https://github.com/3096/skyline/tree/xde)
 - [Dragon Quest XI S](https://github.com/3096/skyline/tree/jack)
